@@ -9,6 +9,7 @@
 		const stateRefreshRate = 500;
 		const playerAccelerationIndex = 0;
 		var peakAccelerations = [0, 0, 0, 0, 0];
+		var usersImages = {};
 		var state = {};
 
 		function refreshSate(playroom) {
@@ -23,6 +24,10 @@
 					peakAccelerations[i] = competitorAccelerations[i];
 				}
 			}
+		}
+
+		function handleUserImages() {
+
 		}
 
 		function handleAnimation() {
@@ -112,30 +117,46 @@
 				.then(startReporting)
 				.then(startRefreshing);
 
-		var animation = setInterval(handleAnimation, 2);
+		var animationInterval = setInterval(handleAnimation, 2);
+		var userImagesInterval = setInterval(handleUserImages, 2);
+	</script>
+	<script type="text/javascript" src="scripts/fb.js">
 	</script>
 </head>
 <body>
 	<div id="screen">
-		<div id="grantMotionAccess" class="gameButton" style="top:2rem" onclick="grantMotionAccess()">
+		<fb:login-button scope="public_profile,email"
+						 onlogin="checkLoginState();">
+		</fb:login-button>
+
+		<div id="grantMotionAccess" class="gameButton" style="top: 2rem" onclick="grantMotionAccess()">
 			<div>Grant Motion Access</div>
 		</div>
+
 		<div class="gameButton" style="top: 28rem; width: 2rem;">
 			<div id="player0">
-				<img class="avatar" src="https://scontent-waw1-1.xx.fbcdn.net/v/t31.0-1/p100x100/21458131_273247729847910_396956717697433969_o.jpg?_nc_cat=101&amp;_nc_sid=dbb9e7&amp;_nc_ohc=g48EAoO-E3YAX8lXqWl&amp;_nc_ht=scontent-waw1-1.xx&amp;_nc_tp=6&amp;oh=845098060f58f54f6592cb910e6bf7ab&amp;oe=5E8FB7FE">
+				<img id="playerimage0" class="avatar" src="" alt="">
 			</div>
 		</div>
 		<div class="gameButton" style="top: 28rem; width: 2rem; height: 0; left: 5rem; background-color: blueviolet">
-			<div id="player1"></div>
+			<div id="player1">
+				<img id="playerimage1" class="avatar" src="" alt="">
+			</div>
 		</div>
 		<div class="gameButton" style="top: 28rem; width: 2rem; height: 0; left: 8rem; background-color: darkblue">
-			<div id="player2"></div>
+			<div id="player2">
+				<img id="playerimage2" class="avatar" src="" alt="">
+			</div>
 		</div>
 		<div class="gameButton" style="top: 28rem; width: 2rem; height: 0; left: 11rem; background-color: indigo">
-			<div id="player3"></div>
+			<div id="player3">
+				<img id="playerimage3" class="avatar" src="" alt="">
+			</div>
 		</div>
 		<div class="gameButton" style="top: 28rem; width: 2rem; height: 0; left: 14rem; background-color: sandybrown">
-			<div id="player4"></div>
+			<div id="player4">
+				<img id="playerimage4" class="avatar" src="" alt="">
+			</div>
 		</div>
 	</div>
 </body>

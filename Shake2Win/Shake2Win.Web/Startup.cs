@@ -23,6 +23,12 @@ namespace Shake2Win.Web
 
 			services.AddSingleton<IdGenerator>();
 			services.AddSingleton<PlayroomsRepository>();
+
+			services.AddAuthentication().AddFacebook(facebookOptions =>
+			{
+				facebookOptions.AppId = "490921511579816";
+				facebookOptions.AppSecret = "fe878d9e59a6156da8ee412033798970";
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +52,8 @@ namespace Shake2Win.Web
 			{
 				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sake2Win API V1");
 			});
+
+			app.UseAuthentication();
 		}
 	}
 }
