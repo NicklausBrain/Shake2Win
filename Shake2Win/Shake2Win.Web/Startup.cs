@@ -1,9 +1,6 @@
-using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace Shake2Win.Web
 {
@@ -13,34 +10,21 @@ namespace Shake2Win.Web
 		// For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services
+				.AddMvc(options => options.EnableEndpointRouting = false)
+				.AddNewtonsoftJson();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
-			if (env.IsDevelopment())
-			{
-				app.UseDeveloperExceptionPage();
-			}
+			app.UseHsts();
 
-			app.UseRouting();
+			app.UseHttpsRedirection();
 
-			app.UseEndpoints(endpoints =>
-			{
-				endpoints.MapGet("/", async context =>
-				{
-					await context.Response.WriteAsync($"{Environment.MachineName} says: 'Hello World!'\n");
-					await context.Response.WriteAsync($"OS: {Environment.OSVersion}\n");
-					await context.Response.WriteAsync($"Is x64: {Environment.Is64BitProcess}\n");
-					await context.Response.WriteAsync($"Processors: {Environment.ProcessorCount}\n");
-					await context.Response.WriteAsync($"Runtime version: {Environment.Version}\n");
-				});
+			app.UseDeveloperExceptionPage();
 
-				endpoints.MapGet("/test", async context =>
-				{
-					await context.Response.WriteAsync("Test!!!");
-				});
-			});
+			app.UseMvcWithDefaultRoute();
 		}
 	}
 }
