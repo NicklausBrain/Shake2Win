@@ -1,0 +1,88 @@
+﻿/*
+	main colors:
+	1) background: whitesmoke;
+	2) menu default: darkcyan;
+	3) food default: mediumvioletred;
+	4) text color: whitesmoke;
+*/
+
+/* BEGIN GENERAL STYLES*/
+
+html {
+	font-size: 3vh;
+	height: 100%;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	overflow: hidden; /* Removes scroll bars in IE */
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	background-color: black;
+	touch-action: none;
+}
+
+#screen, .screen {
+	position: relative;
+	top: 50%;
+	left: 0;
+	width: 18rem;
+	height: 32rem;
+	padding: 0;
+	margin: 0 auto;
+	transform: translateY(-50%);
+	background-color: whitesmoke;
+	z-index: 0;
+}
+
+/* END GENERAL STYLES*/
+
+/* BEGIN CONTROLS STYLES*/
+
+/*
+	TODO: this is a try to emulate CSS class inheritance.
+	TODO: perhaps it is better to implicitly use several classes.
+*/
+.control, .gameButton, .scoreItem, #gameSpeedLabel {
+	position: absolute;
+	height: 2rem;
+	text-align: center;
+	margin: 0 auto;
+	cursor: pointer;
+}
+
+	.control div {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+.gameButton {
+	left: 2rem;
+	width: 14rem;
+	height: 2rem;
+	background-color: darkcyan;
+	color: whitesmoke;
+	border-radius: 1rem;
+}
+
+	.gameButton:hover {
+		background-color: darkcyan;
+		opacity: 0.75;
+	}
+
+	.gameButton div {
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	.gameButton .fa {
+		display: inherit;
+	}
+
+.avatar {
+	width: 1rem;
+	border-radius: 1rem;
+}

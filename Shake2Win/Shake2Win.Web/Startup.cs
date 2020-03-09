@@ -30,6 +30,10 @@ namespace Shake2Win.Web
 
 			app.UseDeveloperExceptionPage();
 
+			app.UseDefaultFiles();
+
+			app.UseStaticFiles();
+
 			app.UseMvcWithDefaultRoute();
 
 			app.UseSwagger();
