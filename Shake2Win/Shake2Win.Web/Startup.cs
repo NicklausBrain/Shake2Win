@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -28,7 +29,16 @@ namespace Shake2Win.Web
 			{
 				endpoints.MapGet("/", async context =>
 				{
-					await context.Response.WriteAsync("Hello World!");
+					await context.Response.WriteAsync($"{Environment.MachineName} says: 'Hello World!'\n");
+					await context.Response.WriteAsync($"OS: {Environment.OSVersion}\n");
+					await context.Response.WriteAsync($"Is x64: {Environment.Is64BitProcess}\n");
+					await context.Response.WriteAsync($"Processors: {Environment.ProcessorCount}\n");
+					await context.Response.WriteAsync($"Runtime version: {Environment.Version}\n");
+				});
+
+				endpoints.MapGet("/test", async context =>
+				{
+					await context.Response.WriteAsync("Test!!!");
 				});
 			});
 		}
