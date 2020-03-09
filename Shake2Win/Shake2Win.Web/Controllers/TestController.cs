@@ -12,6 +12,7 @@ namespace Shake2Win.Web.Controllers
 	/// </summary>
 	public class TestController : Controller
 	{
+		[HttpGet("test/env")]
 		public IActionResult Env()
 		{
 			return View("Test");
