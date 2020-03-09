@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Shake2Win.Web.Data;
 
 namespace Shake2Win.Web
 {
@@ -19,6 +20,9 @@ namespace Shake2Win.Web
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "Sake2Win API", Version = "v1" });
 			});
+
+			services.AddSingleton<IdGenerator>();
+			services.AddSingleton<PlayroomsRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,7 +44,7 @@ namespace Shake2Win.Web
 
 			app.UseSwaggerUI(c =>
 			{
-				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sake To Win API V1");
+				c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sake2Win API V1");
 			});
 		}
 	}
